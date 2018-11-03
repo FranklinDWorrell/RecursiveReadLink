@@ -79,8 +79,7 @@ int main(int argc, char *argv[]) {
 	} 
 
 	printf("%s\n", filename); 
-//	free(p_readlink_buffer); 
-//	free(filename); 
+	free(p_readlink_buffer); 
 	exit(0); 
 } 
 
@@ -91,13 +90,7 @@ int main(int argc, char *argv[]) {
  * @param isOutputVerbose 
  */ 
 char* follow_link(char* filename, char** buffer) {
-//	if ((*buffer = realloc(*buffer, PATH_MAX)) == NULL) {
-//		system_call_failed("realloc"); 
-//		exit(1); 
-//	} 
-
 	if (readlink(filename, *buffer, PATH_MAX - 1) < 0) {
-		free(buffer); 
 		printf("Error resolving target of symlink: %s\n", filename); 
 		exit(1); 
 	} else {
